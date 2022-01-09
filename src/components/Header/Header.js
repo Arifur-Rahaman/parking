@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './Header.css'
-import SigninModal from '../SigninModal/SigninModal';
 import {styled } from '@mui/system';
 import bg from '../../assets/images/header.jpg'
 import { Button, Container, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { authContext } from '../../App';
+import NavBar from '../NavBar/NavBar';
 
 const HeaderContainer = styled('div')(({theme})=>({
     width: '100%',
@@ -18,13 +20,10 @@ const HeaderContainer = styled('div')(({theme})=>({
     textAlign: 'center'
 }))
 const Header = () => {
-    const [modalOpen, setModalOpen] = useState(false);
-    const closeModal = ()=>{
-        setModalOpen(false)
-    }
-    console.log(modalOpen);
+    const [{email}, setSingedInUser] = useContext(authContext);
     return (
        <>
+       {email&& <NavBar/>}
        <HeaderContainer>
                 
             <Container sx={(theme)=>({
@@ -59,10 +58,8 @@ const Header = () => {
                 >
                     Instantly book your space today. Trusted by millions
                 </Typography>
-                {!modalOpen &&<Button variant='contained' onClick={()=>setModalOpen(true)}>Singin</Button>}
+               {!email && <Link to='/login' style={{textDecoration:'none'}}><Button variant='contained'>Singin</Button></Link>}
             </Container>
-            
-            {modalOpen&&<SigninModal setModalOpen={closeModal}></SigninModal>}
         </HeaderContainer>
         </>
     );

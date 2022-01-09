@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Menu.css'
 import { styled} from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
@@ -7,8 +7,17 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { useNavigate } from 'react-router-dom';
+import { MiscellaneousServices } from '@mui/icons-material';
+import ParkingOptions from '../ParkingOptions/ParkingOptions';
+import { authContext } from '../../App';
 
 const drawerWidth = 240;
 
@@ -50,6 +59,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   );
 
 const Menu = () => {
+  const [{email}, setSingedInUser] = useContext(authContext)
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -59,32 +69,83 @@ const Menu = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const itemListMain = [
+    {
+      text: 'Home',
+      icon: <HomeIcon/>,
+      onclick: ()=>navigate('/')
+    },
+    {
+      text: 'About',
+      icon: <InfoIcon/>,
+      onclick: ()=>navigate('/about')
+    },
+    {
+      text: 'Service',
+      icon: <MiscellaneousServicesIcon/>,
+      onclick: ()=>navigate('/services')
+    },
+    {
+      text: 'Parking Options',
+      icon: <LocalParkingIcon/>,
+      onclick: ()=>navigate('/options')
+    },
+    {
+      text: 'Contact',
+      icon: <ContactPhoneIcon/>,
+      onclick: ()=>navigate('/contact')
+    },
+  ]
+  const itemListSub = [
+    {
+      text: 'Helps',
+      icon: <ContactSupportIcon/>,
+      onclick: ()=>navigate('/help')
+    }
+  ]
+  const navigate = useNavigate()
     return (
-        <Drawer variant="permanent" open={open} onMouseEnter={handleDrawerOpen} onMouseLeave={handleDrawerClose}>
+        <Drawer variant="permanent" open={open} onMouseEnter={handleDrawerOpen} onMouseLeave={handleDrawerClose} sx={{color: 'red'}}>
 
         <Divider />
         <h3>Parking <span>World best</span></h3>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        {
+          itemListMain.map(list=>{
+            const {text, icon, onclick} = list;
+            return(
+              <List>
+                <ListItem button key={text} onClick={onclick}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            </List>
+            )
+          })
+        }
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        {
+          itemListSub.map(list=>{
+            const {text, icon, onclick} = list;
+            return(
+              <List>
+                <ListItem button key={text} onClick={onclick}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            </List>
+            )
+          })
+        }
+        {
+          !email&&
+          <List>
+            <ListItem button key='Login' onClick={()=>navigate('/login')}>
+            <ListItemIcon><LockOpenIcon/></ListItemIcon>
+            <ListItemText primary='Login' />
+          </ListItem>
         </List>
+        }
+        
       </Drawer>
         
     );
