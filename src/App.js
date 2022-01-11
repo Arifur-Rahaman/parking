@@ -4,7 +4,6 @@ import { Routes, Route} from "react-router-dom";
 import DriverHome from './components/DriverHome/DriverHome';
 import Menu from './components/Menu/Menu';
 import Main from './components/Main/Main';
-import { BrowserRouter } from "react-router-dom";
 import PlaceDetails from './components/PlaceDetails/PlaceDetails';
 import Booking from './components/Booking/Booking';
 import BookingDetails from './components/BookingDetails/BookingDetails';
