@@ -10,6 +10,7 @@ import Select from '@mui/material/Select';
 
 import TextField from '@mui/material/TextField';
 import { bookingContext } from '../../App';
+import parkDetail from '../../fakeData/fakeData';
 
 const BookedButton = styled(Button)(({theme})=>({
     color: 'white',
@@ -34,7 +35,9 @@ export const MainButton = styled(Button)(({theme})=>({
         backgroundColor: '#3A3B3C',
     },
 }))
-const OwnerDetails = (props) => {
+const OwnerDetails = ({palaceId}) => {
+
+    const data = parkDetail.find(pd=>pd.id===palaceId);
     const [startTime, setStartTime] =useState(null);
     const [endTime, setEndTime] = useState(null);
     const [clickedButton, setClickedButton] = useState(null)
@@ -57,7 +60,6 @@ const OwnerDetails = (props) => {
     const handleBooking = ()=>{
         setBookingDetails({from: startTime, to: endTime, parkNo: clickedButton, vehicleType: vehicle});
     }
-   
       
     return (
         <Box>
@@ -72,11 +74,10 @@ const OwnerDetails = (props) => {
             >
             <Grid item>
                 <Box componant="div" sx={{display: 'flex', flexDirection: 'column', padding: '15px'}}>
-                    <Typography variant='h4'>Jacky Mong Marma</Typography>
-                    <Typography>{"ID:"+props.palaceId}</Typography>
-                    <Typography variant='h6'>Mirpur-1</Typography>
-                    <Typography variant='caption'>Road 7, House: 13B/B</Typography>
-                    <Rating name="read-only" value= '5' readOnly sx={{color: 'black'}}/>
+                    <Typography variant='h4'>{data.ownerName}</Typography>
+                    <Typography variant='h6'>{data.area}</Typography>
+                    <Typography variant='caption'>{data.address}</Typography>
+                    <Rating name="read-only" value= {data.ratings} readOnly sx={{color: 'black'}}/>
                 </Box>
             </Grid>
             <Grid item>
