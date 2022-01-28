@@ -15,8 +15,6 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useNavigate } from 'react-router-dom';
-import { MiscellaneousServices } from '@mui/icons-material';
-import ParkingOptions from '../ParkingOptions/ParkingOptions';
 import { authContext } from '../../App';
 
 const drawerWidth = 240;
@@ -105,7 +103,18 @@ const Menu = () => {
   ]
   const navigate = useNavigate()
     return (
-        <Drawer variant="permanent" open={open} onMouseEnter={handleDrawerOpen} onMouseLeave={handleDrawerClose} sx={{color: 'red'}}>
+        <Drawer 
+        variant="permanent" 
+        PaperProps={{
+          sx: {
+            backgroundColor: "#13C33E",
+            color: "white",
+          }
+        }} 
+        open={open} 
+        onMouseEnter={handleDrawerOpen} 
+        onMouseLeave={handleDrawerClose}
+        >
 
         <Divider />
         <h3>Parking <span>World best</span></h3>
@@ -115,7 +124,7 @@ const Menu = () => {
             return(
               <List>
                 <ListItem button key={text} onClick={onclick}>
-                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemIcon sx={{color: 'white'}}>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </List>
@@ -129,7 +138,7 @@ const Menu = () => {
             return(
               <List>
                 <ListItem button key={text} onClick={onclick}>
-                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemIcon sx={{color: 'white'}}>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </List>
