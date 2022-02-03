@@ -1,11 +1,26 @@
-import { Typography } from '@mui/material';
-import React from 'react';
+import { Box } from '@mui/material';
+import Discount from '../../components/Discount/Discount'
+import React, { useContext } from 'react';
+import Tariffs from '../Tariffs/Tariffs';
+import Footer from '../Footer/Footer';
+import ParkingAmenities from '../ParkingAmenities/ParkingAmenities';
+import HowWork from '../HowWork/HowWork';
+import ParkingOptions from '../ParkingOptions/ParkingOptions';
+import { authContext } from '../../App';
+import NavBar from '../NavBar/NavBar';
 
 const Options = () => {
+    const [{email}, setSingedInUser] = useContext(authContext);
     return (
-        <div>
-            <Typography>Parking Options Comming Soon</Typography>
-        </div>
+        <Box sx={{width: '100%'}}>
+            {email&& <NavBar></NavBar>}
+            <ParkingOptions showTittle={false}></ParkingOptions>
+            <ParkingAmenities></ParkingAmenities>
+            <Discount></Discount>
+            <Tariffs></Tariffs>
+            <HowWork></HowWork>
+            <Footer></Footer>
+        </Box>
     );
 };
 

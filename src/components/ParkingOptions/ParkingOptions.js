@@ -6,7 +6,6 @@ import {List, P} from '../HowWork/HowWork'
 import { Grid, Stack } from '@mui/material';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import TimerIcon from '@mui/icons-material/Timer';
-
 const OptionImage = styled('img')(({theme})=>({
     height: '350px',
     [theme.breakpoints.down('md')]:{
@@ -21,7 +20,7 @@ const OptionStack = styled('div')(({theme})=>({
     }
 }))
 
-const ParkingOptions = () => {
+const ParkingOptions = ({showTittle}) => {
     const parkingOptions =[
         {
             optionTitle: 'Valet Parking',
@@ -50,7 +49,7 @@ const ParkingOptions = () => {
     ]
     return (
         <Box componant="div">
-            <List variant="h4" sx={{padding: '20px'}}>Parking Options</List>
+            {showTittle && <List variant="h4" sx={{padding: '20px'}}>Parking Options</List>}
             <Grid container sx={{textAlign: 'center'}}>
                 <Grid item xs={12}  sm={4}>
                     {

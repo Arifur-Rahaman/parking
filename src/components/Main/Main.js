@@ -11,7 +11,7 @@ const Main = () => {
         <div className="main">
             <Header></Header>
             <HowWork showTittle={true}></HowWork>
-            <ParkingOptions></ParkingOptions>
+            <ParkingOptions showTittle={true}></ParkingOptions>
             <Counter></Counter>
             <ParkingAmenities></ParkingAmenities>
             <Footer></Footer>

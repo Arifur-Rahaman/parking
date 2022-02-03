@@ -1,14 +1,16 @@
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 import {Box, styled } from '@mui/system';
-import { ListItem } from '@mui/material';
 import AppleIcon from '@mui/icons-material/Apple';
 import GoogleIcon from '@mui/icons-material/Google';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import React from 'react';
-import { Navigation } from '@mui/icons-material';
 const Item = styled('div')(({theme})=>({
-    paddingLeft: '20px'
+    paddingLeft: '20px',
+    [theme.breakpoints.down('md')]: {
+        pl: '0',
+      },
+    
 }))
 const H= styled('h4')(({theme})=>({
 
@@ -22,14 +24,14 @@ const Footer = () => {
             xs={12} 
             sx={{backgroundColor: "#040720", padding: '20px'}}
             >
-                <Grid item xs={4} sm={3} >
+                <Grid item xs={12} md={4}>
                     <Item>
                         <Stack direction='row' spacing={1} alignItems='center'>
                             <LocationOnIcon sx={{color: 'green', fontSize:'40px'}}/>
                             <Typography variant="h6" sx={{color: 'white', paddingBottom: '10px'}}>Parkivia</Typography>
                         </Stack>
                         <Typography variant='caption' sx={{color:'#808080'}}>We are the official provider of Airport parking. You can't park closer!</Typography>
-                        <Stack  direction="row" spacing={1} sx={{paddingTop: '10px'}}>
+                        <Stack  direction={{xs: 'column', md: 'row'}} spacing={1} sx={{paddingTop: '10px'}}>
                             <Paper sx={{backgroundColor: 'black', color: 'white', padding:'10px'}}> 
                                 <Stack direction='row' spacing={1} sx={{justifyContent:'center', alignItems:'center'}}>
                                     <Box><AppleIcon/></Box>
@@ -53,14 +55,14 @@ const Footer = () => {
                         </Stack>
                         </Item>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} md={8}>
                 <Grid 
                 container
                 direction="row"
                 justifyContent="space-between"
                 spacing ={2}
                 >
-                    <Grid item xs={6} sm={4}>
+                    <Grid item xs={12} md={4}>
                         <Item>
                             <Typography variant="h6" sx={{color: 'white', paddingBottom: '10px'}}>Navigation</Typography>
                                 {
@@ -73,7 +75,7 @@ const Footer = () => {
                                 }
                         </Item>
                     </Grid>
-                    <Grid item xs={6} sm={4}>
+                    <Grid item xs={12} md={4}>
                         <Item>
                         <Typography variant="h6" sx={{color: 'white', paddingBottom:'10px'}}>Contact Info</Typography>
                         <Typography variant="caption" sx={{color: '#808080', paddingBottom: '5px'}}>Corporate office address:</Typography>
@@ -91,7 +93,7 @@ const Footer = () => {
                         </Stack>
                         </Item>
                     </Grid>
-                    <Grid item xs={6} sm={4}>
+                    <Grid item xs={12} md={4}>
                         <Item>
                         <Typography variant="h6" sx={{color: 'white', paddingBottom:'10px'}}>Discover</Typography>
                         {

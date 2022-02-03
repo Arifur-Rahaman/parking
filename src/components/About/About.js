@@ -1,11 +1,20 @@
-import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
+import AirportParking from '../AirportParking/AirportParking';
+import CustomerReviews from '../CustomerReviews/CustomerReviews';
+import Footer from '../Footer/Footer';
+import Counter from '../Counter/Counter'
+import History from '../History/History';
 
 const About = () => {
     return (
-        <div>
-            <Typography variant='h1'>About Comming Soon</Typography>
-        </div>
+        <Box sx={{width: '100%'}}>
+            <AirportParking/>
+            <Counter></Counter>
+            <History></History>
+            <CustomerReviews/>
+            <Footer></Footer>
+        </Box>
     );
 };
 

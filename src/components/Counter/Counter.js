@@ -19,7 +19,7 @@ export const CounterBox=styled('div')(({theme})=>({
 
 const Counter = () => {
     return (
-        <Box sx={{backgroundColor: 'whitesmoke', paddingTop: '30px', marginTop:'30px'}}>
+        <Box sx={{backgroundColor: 'whitesmoke', paddingTop: '30px', pb:'30px', marginTop:'30px'}}>
         <Grid container>
             <Grid xs={6} sm={3} item spacing={2}>
                 <CounterBox>

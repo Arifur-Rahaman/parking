@@ -1,16 +1,9 @@
 
-import { Avatar, Badge, Button, Stack, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import { Avatar, Badge, Button, Stack} from '@mui/material';
+import React, { useContext} from 'react';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-
-import Switch from '@mui/material/Switch';
 import { useNavigate } from 'react-router-dom';
 import { accountStatusContext, authContext } from '../../App';
-
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-
-
 const NavBar = () => {
     const [singedInUser, setSingedInUser] = useContext(authContext)
     const navigate = useNavigate();
