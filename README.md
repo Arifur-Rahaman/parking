@@ -1,3 +1,3 @@
-This is a website related parking the bike and car in city. After successfully loged in a user can see available parking area in his or her location if he is in rider/driver mode by the help of google map API. User also can see the parking request if he or she is in parking owner mode. In this website all authentication system is working using firebase. So there has no worries about user data security.
+This is a website related to parking bikes and cars in the city. After successfully logging in a user can see available parking areas in his or her location if he is in rider/driver mode with the help of Google Maps API. Users also can see the parking request if he or she is in parking owner mode. On this website authentication system is working using firebase. So there have no worries about user data security.
 
 To visit the site: https://online-parking-140b2.web.app/
