@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './Menu.css'
+import logo from '../../assets/images/logo.png'
 import { styled} from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -16,6 +17,7 @@ import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useNavigate } from 'react-router-dom';
 import { authContext } from '../../App';
+import { Stack } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -70,34 +72,34 @@ const Menu = () => {
   const itemListMain = [
     {
       text: 'Home',
-      icon: <HomeIcon/>,
+      icon: <HomeIcon sx={{fontSize:'40px'}}/>,
       onclick: ()=>navigate('/')
     },
     {
       text: 'About',
-      icon: <InfoIcon/>,
+      icon: <InfoIcon sx={{fontSize:'40px'}}/>,
       onclick: ()=>navigate('/about')
     },
     {
       text: 'Service',
-      icon: <MiscellaneousServicesIcon/>,
+      icon: <MiscellaneousServicesIcon sx={{fontSize:'40px'}}/>,
       onclick: ()=>navigate('/services')
     },
     {
       text: 'Parking Options',
-      icon: <LocalParkingIcon/>,
+      icon: <LocalParkingIcon sx={{fontSize:'40px'}}/>,
       onclick: ()=>navigate('/options')
     },
     {
       text: 'Contact',
-      icon: <ContactPhoneIcon/>,
+      icon: <ContactPhoneIcon sx={{fontSize:'40px'}}/>,
       onclick: ()=>navigate('/contact')
     },
   ]
   const itemListSub = [
     {
       text: 'Helps',
-      icon: <ContactSupportIcon/>,
+      icon: <ContactSupportIcon sx={{fontSize:'40px'}}/>,
       onclick: ()=>navigate('/help')
     }
   ]
@@ -116,15 +118,18 @@ const Menu = () => {
         onMouseLeave={handleDrawerClose}
         >
 
+
+        <Stack alignItems='center'>
+          <img style={{width:'70px', padding:'20px 0'}} src={logo} alt=''/>
+        </Stack>
         <Divider />
-        <h3>Parking <span>World best</span></h3>
         {
           itemListMain.map(list=>{
             const {text, icon, onclick} = list;
             return(
               <List>
                 <ListItem button key={text} onClick={onclick}>
-                <ListItemIcon sx={{color: 'white'}}>{icon}</ListItemIcon>
+                <ListItemIcon sx={{color: 'white', fontWeight:'bold'}}>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </List>
@@ -149,7 +154,7 @@ const Menu = () => {
           !email&&
           <List>
             <ListItem button key='Login' onClick={()=>navigate('/login')}>
-            <ListItemIcon><LockOpenIcon/></ListItemIcon>
+            <ListItemIcon>< LockOpenIcon sx={{fontSize:'40px', color:'white'}}/></ListItemIcon>
             <ListItemText primary='Login' />
           </ListItem>
         </List>

@@ -15,7 +15,7 @@ const Booking = () => {
     return (
         <Box componant='div' sx={{width: '100%'}}>
             <NavBar></NavBar>
-            <Box componant='div' sx={{paddingBottom: '20px'}}>
+            <Box componant='div' sx={{p: '60px'}}>
             <Stack direction={{xs: 'column',sm: 'row'}} justifyContent='space-around' alignItems='center'>
                 <Stack direction='column' spacing={4}>
                     <Box>

@@ -183,7 +183,7 @@ const Login = () => {
         <Box componant='div' sx={{width: '100%', height:'100vh', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Stack justifyContent='center' alignItems='center' sx={{width: '600px'}}>
                 <Card sx={{padding: '20px', border: '1px solid black'}}>
-                    <Typography variant='h5' sx={{pb: '10px'}}>{newUser? 'Create an account' : 'Login'}</Typography>
+                    <Typography variant='h5' sx={{pb: '10px', color:'#13C33E'}}>{newUser? 'Create an account' : 'Login'}</Typography>
                     <form onSubmit={handleFormSubmit}>
                         <Grid container spacing={2}>
                             {
@@ -198,7 +198,7 @@ const Login = () => {
                                 <TextField type='password' variant='standard' fullWidth placeholder='Password' name='password' onChange={getInput} required/>
                             </Grid>
                             <Grid item xs={12}>
-                                <Button variant='contained' fullWidth type='submit'>{newUser? 'Submit': 'Login'}</Button>
+                                <Button variant='contained' fullWidth type='submit' sx={{backgroundColor:'#13C33E'}}>{newUser? 'Submit': 'Login'}</Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Stack direction='row' alignItems='center' justifyContent='center'> 

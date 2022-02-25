@@ -19,34 +19,34 @@ export const CounterBox=styled('div')(({theme})=>({
 
 const Counter = () => {
     return (
-        <Box sx={{backgroundColor: 'whitesmoke', paddingTop: '30px', pb:'30px', marginTop:'30px'}}>
+        <Box sx={{backgroundColor: 'whitesmoke', paddingTop: '60px', pb:'30px', marginTop:'30px'}}>
         <Grid container>
             <Grid xs={6} sm={3} item spacing={2}>
                 <CounterBox>
                     <AddLocationIcon sx={{color: 'green', fontSize:'40px'}}/>
-                    <Typography variant='h6' sx={{fontWeight: 'bold'}}>10,000+</Typography>
-                    <Typography variant='body2'>Parking Locations</Typography>
+                    <Typography variant='h6' sx={{fontWeight: 'bold',  m:'10px 0'}}>10,000+</Typography>
+                    <Typography variant='subtitle1'>Parking Locations</Typography>
                 </CounterBox>
             </Grid>
             <Grid xs={6} sm={3}item spacing={2}>
                 <CounterBox>
                     <EmojiEmotionsIcon sx={{color: 'green', fontSize:'40px'}}/>
-                    <Typography variant='h6' sx={{fontWeight: 'bold'}}>95%</Typography>
-                    <Typography variant='body2'>Customer Satisfaction</Typography>
+                    <Typography variant='h6' sx={{fontWeight: 'bold', m:'10px 0'}}>95%</Typography>
+                    <Typography variant='subtitle1'>Customer Satisfaction</Typography>
                 </CounterBox>
             </Grid>
             <Grid xs={6} sm={3} item spacing={2}>
                 <CounterBox>
                     <StarIcon sx={{color: 'green', fontSize:'40px'}}/>
-                    <Typography variant='h6' sx={{fontWeight: 'bold'}}>5</Typography>
-                    <Typography variant='body2'>Star Rated App</Typography>
+                    <Typography variant='h6' sx={{fontWeight: 'bold',  m:'10px 0'}}>5</Typography>
+                    <Typography variant='subtitle1'>Star Rated App</Typography>
                 </CounterBox>
             </Grid>
             <Grid xs={6} sm={3} item spacing={2}>
                 <CounterBox>
                     <GroupIcon sx={{color: 'green', fontSize:'40px'}}/>
-                    <Typography variant='h6' sx={{fontWeight: 'bold'}}>25,000</Typography>
-                    <Typography variant='body2'>Monthly User</Typography>
+                    <Typography variant='h6' sx={{fontWeight: 'bold',  m:'10px 0'}}>25,000</Typography>
+                    <Typography variant='subtitle1'>Monthly User</Typography>
                 </CounterBox>
             </Grid>
         </Grid>

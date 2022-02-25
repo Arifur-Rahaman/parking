@@ -16,8 +16,8 @@ const IconContainer=styled('div')({
 })
 const ParkingAmenities = () => {
     return (
-        <Box component='div' sx={{backgroundColor: 'whitesmoke', paddingTop: '60px'}}>
-            <Typography variant='h4' sx={{textAlign: 'center', fontWeight: 'bold'}}>Parking Amenities</Typography>
+        <Box component='div' sx={{backgroundColor: 'whitesmoke', p: '60px 0 60px 0'}}>
+            <Typography variant='h4' sx={{pb:'60px',textAlign: 'center', fontWeight: 'bold', color:'#13C33E'}}>Parking Amenities</Typography>
             <Grid container spacing={2}>
                 {
                     ["Open Air Covered Parking",

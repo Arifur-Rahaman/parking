@@ -29,10 +29,15 @@ const UnBookedButton = styled(Button)(({theme})=>({
 }))
 export const MainButton = styled(Button)(({theme})=>({
     width: '200px', 
-    height: '30px', 
+    height: '30px',
+    fontSize: '14px',
+    p: '20px',
     backgroundColor: '#13C33E',
+    border: '1px solid #13C33E',
     '&:hover': {
-        backgroundColor: '#3A3B3C',
+        backgroundColor: 'white',
+        border: '1px solid #13C33E',
+        color: '#13C33E'
     },
 }))
 const OwnerDetails = ({palaceId}) => {
@@ -62,8 +67,8 @@ const OwnerDetails = ({palaceId}) => {
     }
       
     return (
-        <Box>
-        <Typography variant='h4' align='center' sx={{color: '#13C33E', paddingBottom: '10px'}}>Parking Owner Details</Typography>
+        <Box sx={{p:'60px 0'}}>
+        <Typography variant='h4' align='center' sx={{color: '#13C33E', pb: '40px'}}>Parking Owner Details</Typography>
         <Grid 
             container
             justifyContent = "space-around"

@@ -6,7 +6,7 @@ import { Box, styled } from '@mui/system';
 import { Typography } from '@mui/material';
 
 const WorkingDetail = styled(Paper)(({theme})=>({
-    padding: '10px',
+    padding: '40px 10px',
     textAlign: 'center'
 }))
 export const List = styled(Typography)(({theme})=>({
@@ -26,15 +26,15 @@ const HowWork = (props) => {
         "Guarantee your parking spot by booking in advance. Can't make it? Cancellations are free."
     ]
     return (
-        <Box sx={{backgroundColor: 'whitesmoke', padding: '20px 10px'}}>
-            {showTittle && <List variant='h4' sx={{paddingBottom: '20px'}}>How Does It Work?</List>}
+        <Box sx={{backgroundColor: 'whitesmoke', padding: '60px'}}>
+            {showTittle && <List variant='h4' sx={{pb: '40px', color: '#13C33E'}}>How Does It Work?</List>}
             <Grid container spacing={2}>
                 {
                     headlines.map((headline, i)=>(
                         <Grid item xs={12} sm={4}>
                             <WorkingDetail>
-                                <List variant='h6'>{headline}</List>
-                                <P>{details[i]}</P>
+                                <List  variant='h5'>{headline}</List>
+                                <P sx={{fontSize:'18px'}}>{details[i]}</P>
                             </WorkingDetail>
                         </Grid>
                     ))

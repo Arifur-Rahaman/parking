@@ -14,7 +14,7 @@ const BookingDetails = () => {
     return (
         <Box component='div' sx={{width: '100%'}}>
             <NavBar></NavBar>
-            <Box componant='div' sx={{pb: '20px'}}>
+            <Box componant='div' sx={{p: '60px'}}>
                 <Grid container justifyContent='center'>
                     <Grid item  sx={{backgroundColor: 'whitesmoke', padding: '20px', width: '80%'}}>
                         <Typography align='center'>Your request is processing. You will be confirmed soon</Typography>

@@ -48,8 +48,8 @@ const ParkingOptions = ({showTittle}) => {
         }
     ]
     return (
-        <Box componant="div">
-            {showTittle && <List variant="h4" sx={{padding: '20px'}}>Parking Options</List>}
+        <Box componant="div" sx={{p: '60px'}}>
+            {showTittle && <List variant="h4" sx={{pb: '40px', color:'#13C33E'}}>Parking Options</List>}
             <Grid container sx={{textAlign: 'center'}}>
                 <Grid item xs={12}  sm={4}>
                     {
@@ -60,7 +60,7 @@ const ParkingOptions = ({showTittle}) => {
                                     <P sx={{textAlign: 'right', fontWeight:'400'}}>{po.optionDetail}</P>
                                 </Box>
                                 <Box>
-                                    <TimerIcon sx={{color: 'green', padding: '20px 0 0 20px'}} />
+                                    <TimerIcon sx={{fontSize:'40px' ,color: 'green', padding: '20px 0 0 20px'}} />
                                 </Box>
                             </OptionStack>
                         ))
@@ -74,7 +74,7 @@ const ParkingOptions = ({showTittle}) => {
                         parkingOptions.slice(3).map((po)=>(
                             <Stack direction='row' spacing={4}>
                                 <Box sx={{paddingTop: '20px'}}>
-                                    <LocalAtmIcon sx={{color: 'green'}} />
+                                    <LocalAtmIcon sx={{color: 'green', fontSize:'40px'}} />
                                 </Box>
                                 <Box componant='div'>
                                     <List 

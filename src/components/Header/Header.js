@@ -6,6 +6,7 @@ import { Button, Container, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../App';
 import NavBar from '../NavBar/NavBar';
+import { MainButton } from '../OwnerDetails/OwnerDetails';
 
 const HeaderContainer = styled('div')(({theme})=>({
     width: '100%',
@@ -17,7 +18,10 @@ const HeaderContainer = styled('div')(({theme})=>({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     margin: '0',
-    textAlign: 'center'
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
 }))
 const Header = () => {
     const [{email}, setSingedInUser] = useContext(authContext);
@@ -51,14 +55,29 @@ const Header = () => {
                 </Typography>
                 <Typography variant='h6'
                     sx={(theme)=>({
+                        p: '20px 0',
                         [theme.breakpoints.down('md')]:{
-                            display: 'none'
+                            display: 'none',
                         }
                     })}
                 >
                     Instantly book your space today. Trusted by millions
                 </Typography>
-               {!email && <Link to='/login' style={{textDecoration:'none'}}><Button variant='contained'>Singin</Button></Link>}
+               {!email && <Link to='/login' style={{textDecoration:'none'}}>
+                   <MainButton 
+                   sx={{width:'150px', 
+                   p:'20px 0', 
+                   fontSize:'16px', 
+                   border:'2px solid #13C33E',
+                   "&:hover": {
+                    border:'2px solid #13C33E'
+                  }
+                }} 
+                variant='contained'
+                >
+                    Singin
+                </MainButton>
+                </Link>}
             </Container>
         </HeaderContainer>
         </>

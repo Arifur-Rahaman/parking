@@ -8,12 +8,14 @@ import HowWork from '../HowWork/HowWork';
 import ParkingOptions from '../ParkingOptions/ParkingOptions';
 import { authContext } from '../../App';
 import NavBar from '../NavBar/NavBar';
+import SubHeader from '../SubHeader/SubHeader';
 
 const Options = () => {
     const [{email}, setSingedInUser] = useContext(authContext);
     return (
         <Box sx={{width: '100%'}}>
             {email&& <NavBar></NavBar>}
+            <SubHeader title={'Parking Options'}></SubHeader>
             <ParkingOptions showTittle={false}></ParkingOptions>
             <ParkingAmenities></ParkingAmenities>
             <Discount></Discount>
