@@ -1,11 +1,11 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import AirportParking from '../AirportParking/AirportParking';
-import CustomerReviews from '../CustomerReviews/CustomerReviews';
-import Footer from '../Footer/Footer';
-import Counter from '../Counter/Counter'
-import History from '../History/History';
-import SubHeader from '../SubHeader/SubHeader';
+import AirportParking from '../../components/AirportParking/AirportParking';
+import CustomerReviews from '../../components/CustomerReviews/CustomerReviews';
+import Footer from '../../components/Footer/Footer';
+import Counter from '../../components/Counter/Counter'
+import History from '../../components/History/History';
+import SubHeader from '../../components/SubHeader/SubHeader';
 
 const About = () => {
     return (

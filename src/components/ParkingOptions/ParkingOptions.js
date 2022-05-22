@@ -24,27 +24,27 @@ const ParkingOptions = ({showTittle}) => {
     const parkingOptions =[
         {
             optionTitle: 'Valet Parking',
-            optionDetail: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora iste officia laborum! A, hic rem?'
+            optionDetail: 'We offer valet parking service for restaurants, stores and other business in your city'
         },
         {
             optionTitle: 'Short-Term Lot',
-            optionDetail: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora iste officia laborum! A, hic rem?'
+            optionDetail: 'We offer Short-Term Lot parking service for restaurants, stores and other business in your city'
         },
         {
             optionTitle: 'Long-Term Lot',
-            optionDetail: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora iste officia laborum! A, hic rem?'
+            optionDetail: 'We offer Long-Term Lot parking service for restaurants, stores and other business in your city'
         },
         {
             optionTitle: 'Economy Lot',
-            optionDetail: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora iste officia laborum! A, hic rem?'
+            optionDetail: 'We offer Economy Lot parking service for restaurants, stores and other business in your city'
         },
         {
             optionTitle: 'Premimu Lot',
-            optionDetail: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora iste officia laborum! A, hic rem?'
+            optionDetail: 'We offer Premimu Lot parking service for restaurants, stores and other business in your city'
         },
         {
             optionTitle: 'Parking Garage',
-            optionDetail: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora iste officia laborum! A, hic rem?'
+            optionDetail: 'We offer Parking Garage for restaurants, stores and other business in your city'
         }
     ]
     return (

@@ -1,6 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState} from 'react';
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { 
+    getAuth, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    updateProfile,
+    getIdToken ,
+    onAuthStateChanged 
+} from "firebase/auth";
 import firebaseConfig from '../../firebase/config';
 import { FacebookAuthProvider } from "firebase/auth";
 import { Button, Card,  Grid, Stack, TextField, Typography } from '@mui/material';
@@ -9,6 +18,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Box } from '@mui/system';
+import userContext from '../../context/userContext';
+import jwt_decode from "jwt-decode";
 initializeApp(firebaseConfig);
 
 const Login = () => {
@@ -22,24 +33,55 @@ const Login = () => {
     })
     const [singedInUser ,setSingedInUser] = useContext(authContext);
 
+    const {setProfileInfo} = useContext(userContext)
+    const makeUserDataApiRequest = () => {
+        const token = localStorage.getItem('idToken')
+        if(token){
+            const decoded = jwt_decode(token)
+            const url = `http://localhost:5000/user?email=${decoded.email}`;
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setProfileInfo(data[0]);
+            })
+        }
+    }
+
     const handleSignInWithGoogle = ()=>{
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
+        
+        const storeNewUserData = (name, email, method)=>{
+            const user = {email, name}
+            fetch('http://localhost:5000/users',{
+                method: method,
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+        }
+
         signInWithPopup(auth, provider)
         .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
             const {displayName, email, photoURL} = result.user;
             const newUser = {
                 name: displayName,
                 email: email,
                 photo: photoURL
-
             }
             setSingedInUser(newUser);
-            navigate('/driver');
+            storeNewUserData(newUser.name, newUser?.email, 'PUT')
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                  const token = await getIdToken(user);
+                  localStorage.setItem('idToken', token);
+                  makeUserDataApiRequest();
+                  navigate('/driver');
+                }
+              });
+
             
             
             // ...

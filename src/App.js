@@ -1,23 +1,28 @@
 
 import './App.css';
 import { Routes, Route} from "react-router-dom";
-import DriverHome from './components/DriverHome/DriverHome';
+import DriverHome from './Pages/DriverHome/DriverHome';
 import Menu from './components/Menu/Menu';
 import Main from './components/Main/Main';
-import PlaceDetails from './components/PlaceDetails/PlaceDetails';
-import Booking from './components/Booking/Booking';
-import BookingDetails from './components/BookingDetails/BookingDetails';
-import Request from './components/Request/Request';
+import PlaceDetails from './Pages/PlaceDetails/PlaceDetails';
+import Booking from './Pages/Booking/Booking';
+import BookingDetails from './Pages/BookingDetails/BookingDetails';
+import Request from './Pages/Request/Request';
 import ConfirmRequest from './components/ConfirmRequest/ConfirmRequest';
 import React, { useState } from 'react';
 import {createContext} from 'react';
-import Login from './components/Login/Login';
+import {UserProvider} from './context/userContext';
+import Login from './Pages/Login/Login';
 import PrivateOutlet from './components/PrivateOutlet/PrivateOutlet';
-import About from './components/About/About';
-import Services from './components/Services/Services';
-import Options from './components/Options/Options';
-import Contact from './components/Contact/Contact';
-import Helps from './components/Helps/Helps';
+import About from './Pages/About/About';
+import Services from './Pages/Services/Services';
+import Options from './Pages/Options/Options';
+import Contact from './Pages/Contact/Contact';
+import Helps from './Pages/Helps/Helps';
+import Profile from './Pages/Profile/Profile';
+import { AllUsersProvider } from './context/allUsersContext';
+import { OwnerInfoProvider } from './context/parkOwnerContext';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 export const bookingContext = createContext();
 export const authContext = createContext();
@@ -29,6 +34,9 @@ function App() {
   const [accountStatus, setAccountStatus]=useState('driver')
   return (
     <authContext.Provider value={[singedInUser, setSingedInUser]}>
+    <UserProvider>
+    <AllUsersProvider>
+    <OwnerInfoProvider>
     <accountStatusContext.Provider value={[accountStatus, setAccountStatus]}>
     <bookingContext.Provider value={[bookingDetails, setBookingDetails]}>
     <div style={{display: 'flex'}}> 
@@ -44,16 +52,21 @@ function App() {
 
                 <Route path='/*' element={<PrivateOutlet/>}>
                   <Route path="driver" element={<DriverHome/>}/>
-                  <Route path="driver/placeDetails/:placeId" element={<PlaceDetails/>}/>
-                  <Route path="driver/placeDetails/:placeId/booking" element={<Booking/>}/>
-                  <Route path="driver/placeDetails/:placeId/booking/bookingDetails" element={<BookingDetails/>}/>
+                  <Route path="driver/placeDetails/:ownerEmail" element={<PlaceDetails/>}/>
+                  <Route path="profile" element={<Profile/>}/>
+                  <Route path="driver/placeDetails/:ownerEmail/booking" element={<Booking/>}/>
+                  <Route path="driver/placeDetails/:ownerEmail/booking/bookingDetails/:bookingId" element={<BookingDetails/>}/>
                   <Route path="owner/request" element={<Request/>}/>
                   <Route path="owner/request/details" element={<ConfirmRequest/>}/>
+                  <Route path="dashboard/:email" element={<Dashboard/>}/>
                 </Route>
             </Routes>      
     </div>
     </bookingContext.Provider>
     </accountStatusContext.Provider>
+    </OwnerInfoProvider>
+    </AllUsersProvider>
+    </UserProvider>
     </authContext.Provider>
   );
 }

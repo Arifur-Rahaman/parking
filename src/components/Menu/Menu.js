@@ -59,9 +59,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   );
 
 const Menu = () => {
-  const [{email}, setSingedInUser] = useContext(authContext)
+  //const [{email}, setSingedInUser] = useContext(authContext)
+  
   const [open, setOpen] = React.useState(false);
-
+  const tokenId = localStorage.getItem('idToken')
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -69,37 +70,42 @@ const Menu = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleSignout = ()=>{
+    localStorage.setItem('idToken','');
+    navigate('/login')
+  }
   const itemListMain = [
     {
       text: 'Home',
-      icon: <HomeIcon sx={{fontSize:'40px'}}/>,
+      icon: <HomeIcon sx={{fontSize:'35px'}}/>,
       onclick: ()=>navigate('/')
     },
     {
       text: 'About',
-      icon: <InfoIcon sx={{fontSize:'40px'}}/>,
+      icon: <InfoIcon sx={{fontSize:'35px'}}/>,
       onclick: ()=>navigate('/about')
     },
     {
       text: 'Service',
-      icon: <MiscellaneousServicesIcon sx={{fontSize:'40px'}}/>,
+      icon: <MiscellaneousServicesIcon sx={{fontSize:'35px'}}/>,
       onclick: ()=>navigate('/services')
     },
     {
       text: 'Parking Options',
-      icon: <LocalParkingIcon sx={{fontSize:'40px'}}/>,
+      icon: <LocalParkingIcon sx={{fontSize:'35px'}}/>,
       onclick: ()=>navigate('/options')
     },
     {
       text: 'Contact',
-      icon: <ContactPhoneIcon sx={{fontSize:'40px'}}/>,
+      icon: <ContactPhoneIcon sx={{fontSize:'35px'}}/>,
       onclick: ()=>navigate('/contact')
     },
   ]
   const itemListSub = [
     {
       text: 'Helps',
-      icon: <ContactSupportIcon sx={{fontSize:'40px'}}/>,
+      icon: <ContactSupportIcon sx={{fontSize:'35px'}}/>,
       onclick: ()=>navigate('/help')
     }
   ]
@@ -129,7 +135,7 @@ const Menu = () => {
             return(
               <List>
                 <ListItem button key={text} onClick={onclick}>
-                <ListItemIcon sx={{color: 'white', fontWeight:'bold'}}>{icon}</ListItemIcon>
+                <ListItemIcon sx={{color: 'white'}}>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </List>
@@ -151,10 +157,16 @@ const Menu = () => {
           })
         }
         {
-          !email&&
-          <List>
+          tokenId
+          ?<List>
+            <ListItem button key='Logout' onClick={handleSignout}>
+            <ListItemIcon>< LockOpenIcon sx={{fontSize:'35px', color:'white'}}/></ListItemIcon>
+            <ListItemText primary='Logout' />
+          </ListItem>
+        </List>
+          :<List>
             <ListItem button key='Login' onClick={()=>navigate('/login')}>
-            <ListItemIcon>< LockOpenIcon sx={{fontSize:'40px', color:'white'}}/></ListItemIcon>
+            <ListItemIcon>< LockOpenIcon sx={{fontSize:'35px', color:'white'}}/></ListItemIcon>
             <ListItemText primary='Login' />
           </ListItem>
         </List>

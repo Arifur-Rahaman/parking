@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from '../Main/Main';
-import Menu from '../Menu/Menu';
+import Main from '../../components/Main/Main';
+import Menu from '../../components/Menu/Menu';
 import './Home.css'
 
 const Home = () => {

@@ -5,9 +5,8 @@ import services_1 from '../../assets/images/services-1.png';
 import services_2 from '../../assets/images/services-2.png';
 import services_3 from '../../assets/images/services-3.png';
 import services_4 from '../../assets/images/services-4.png';
-import Tariffs from '../Tariffs/Tariffs';
-import Footer from '../Footer/Footer';
-import SubHeader from '../SubHeader/SubHeader';
+import Tariffs from '../../components/Tariffs/Tariffs';
+import Footer from '../../components/Footer/Footer';
 const services =[
     {
         title: 'RAPID CITY TRANSFER',

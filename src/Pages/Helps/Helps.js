@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../Footer/Footer';
-import HelpAccordion from '../HelpAccordion/HelpAccordion';
-import SubHeader from '../SubHeader/SubHeader';
+import Footer from '../../components/Footer/Footer';
+import HelpAccordion from '../../components/HelpAccordion/HelpAccordion';
+import SubHeader from '../../components/SubHeader/SubHeader';
 
 const Help = () => {
     return (

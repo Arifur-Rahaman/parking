@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import ContactForm from '../ContactForm/ContactForm';
-import ContactInfo from '../ContactInfo/ContactInfo';
-import ContactLocation from '../ContactLocation/ContactLocation';
-import Footer from '../Footer/Footer';
-import SubHeader from '../SubHeader/SubHeader';
+import ContactForm from '../../components/ContactForm/ContactForm';
+import ContactInfo from '../../components/ContactInfo/ContactInfo';
+import ContactLocation from '../../components/ContactLocation/ContactLocation';
+import Footer from '../../components/Footer/Footer';
+import SubHeader from '../../components/SubHeader/SubHeader';
 
 const Contact = () => {
     return (

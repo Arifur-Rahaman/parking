@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
 import './Header.css'
 import {styled } from '@mui/system';
 import bg from '../../assets/images/header.jpg'
-import { Button, Container, Typography } from '@mui/material';
+import {Container, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { authContext } from '../../App';
 import NavBar from '../NavBar/NavBar';
-import { MainButton } from '../OwnerDetails/OwnerDetails';
+import { MainButton } from '../../Shared/Buttons';
 
 const HeaderContainer = styled('div')(({theme})=>({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
         height: '600px',
+      },
+    [theme.breakpoints.up('md')]: {
+        height: '800px',
       },
     height: '200px',
     backgroundImage: `url(${bg})`,
@@ -24,10 +25,11 @@ const HeaderContainer = styled('div')(({theme})=>({
     alignItems: 'center'
 }))
 const Header = () => {
-    const [{email}, setSingedInUser] = useContext(authContext);
+    //const [{email}, setSingedInUser] = useContext(authContext);
+    const idToken = localStorage.getItem('idToken');
     return (
        <>
-       {email&& <NavBar/>}
+       {idToken&& <NavBar/>}
        <HeaderContainer>
                 
             <Container sx={(theme)=>({
@@ -63,10 +65,11 @@ const Header = () => {
                 >
                     Instantly book your space today. Trusted by millions
                 </Typography>
-               {!email && <Link to='/login' style={{textDecoration:'none'}}>
+               {
+               !idToken && <Link to='/login' style={{textDecoration:'none'}}>
                    <MainButton 
-                   sx={{width:'150px', 
-                   p:'20px 0', 
+                   sx={{
+                    p:'8px 16px',
                    fontSize:'16px', 
                    border:'2px solid #13C33E',
                    "&:hover": {
@@ -77,7 +80,8 @@ const Header = () => {
                 >
                     Singin
                 </MainButton>
-                </Link>}
+                </Link>
+                }
             </Container>
         </HeaderContainer>
         </>

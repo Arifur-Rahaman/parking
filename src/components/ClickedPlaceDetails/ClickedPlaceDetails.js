@@ -4,18 +4,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ClickedPlaceDetails = ({ selectedPlace }) => {
-    const { area, address, ratings, ownerName, id } = selectedPlace
+    const { address,  name,  email} = selectedPlace
     return (
         <Stack alignItems='center'>
             <Paper sx={{ width: '500px' }}>
                 <Typography sx={{color: '#13C33E'}} variant='h5' align='center'>Your Clicked Place</Typography>
-                <Link to={"placeDetails/" + id} style={{ textDecoration: 'none' }}>
+                <Link to={"placeDetails/" + email} style={{ textDecoration: 'none' }}>
                     <Button sx={{ width: '100%', color: 'black' }}>
                         <Box componant="div" sx={{ display: 'flex', flexDirection: 'column', padding: '15px' }}>
-                            <Typography variant='h5'>{area}</Typography>
-                            <Typography variant='h6'>{ownerName}</Typography>
+                            <Typography variant='h6'>{name}</Typography>
                             <Typography variant='caption'>{address}</Typography>
-                            <Typography><Rating name="read-only" value={ratings} readOnly sx={{ color: 'black' }} /></Typography>
+                            <Typography variant='caption'>{email}</Typography>
                         </Box>
                     </Button>
                 </Link>

@@ -21,9 +21,9 @@ const HowWork = (props) => {
     const showTittle = props.showTittle;
     const headlines = ["Save Money", "Save Time", "Save Stress"];
     const details = [
-        "Save upto 70% on our site compared to the cost of on-airport parking",
-        "It's easy to compare parking at all major airports. Booking a reservation in quick and simple!",
-        "Guarantee your parking spot by booking in advance. Can't make it? Cancellations are free."
+        "Save your money on our site compared to the cost of on-airport parking",
+        "It's easy to compare parking at all major areas. Booking a reservation in quick and simple!",
+        "Guarantee your parking spot by booking in advance and stay strees free in your working."
     ]
     return (
         <Box sx={{backgroundColor: 'whitesmoke', padding: '60px'}}>

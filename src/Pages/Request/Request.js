@@ -3,10 +3,10 @@ import { Box } from '@mui/system';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { bookingContext } from '../../App';
-import DriverDetails from '../DriverDetails/DriverDetails';
-import Footer from '../Footer/Footer';
-import NavBar from '../NavBar/NavBar';
-import { MainButton } from '../OwnerDetails/OwnerDetails';
+import DriverDetails from '../../components/DriverDetails/DriverDetails';
+import Footer from '../../components/Footer/Footer';
+import NavBar from '../../components/NavBar/NavBar';
+import { MainButton } from '../../Shared/Buttons';
 
 const Request = () => {
     const [{from, to, parkNo, vehicleType}]=useContext(bookingContext);

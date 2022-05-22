@@ -1,6 +1,6 @@
 import { Button, CardActions, Grid, Rating, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import InputLabel from '@mui/material/InputLabel';
@@ -10,45 +10,37 @@ import Select from '@mui/material/Select';
 
 import TextField from '@mui/material/TextField';
 import { bookingContext } from '../../App';
-import parkDetail from '../../fakeData/fakeData';
-
-const BookedButton = styled(Button)(({theme})=>({
+import { MainButton } from '../../Shared/Buttons';
+import parkOwnerContext from '../../context/parkOwnerContext';
+const ParkSlotButton = styled(Button)(({theme})=>({
     color: 'white',
-    backgroundColor: 'lightgray',
-    
-}))
-const UnBookedButton = styled(Button)(({theme})=>({
-    color: 'white',
+    display:'inline-block',
     backgroundColor: 'black',
     '&:hover': {
         backgroundColor: 'blue',
         fontWeight: 'bold',
     },
+    "&:disabled": {
+        backgroundColor: 'gray'
+      }
     
 
 }))
-export const MainButton = styled(Button)(({theme})=>({
-    width: '200px', 
-    height: '30px',
-    fontSize: '14px',
-    p: '20px',
-    backgroundColor: '#13C33E',
-    border: '1px solid #13C33E',
-    '&:hover': {
-        backgroundColor: 'white',
-        border: '1px solid #13C33E',
-        color: '#13C33E'
-    },
-}))
-const OwnerDetails = ({palaceId}) => {
+const OwnerDetails = ({ownerEmail}) => {
 
-    const data = parkDetail.find(pd=>pd.id===palaceId);
     const [startTime, setStartTime] =useState(null);
     const [endTime, setEndTime] = useState(null);
     const [clickedButton, setClickedButton] = useState(null)
     const [vehicle, setVehicle] = React.useState('');
-
     const [bookingDetails, setBookingDetails] = useContext(bookingContext);
+    const {ownerInfo, setOwnerInfo} = useContext(parkOwnerContext)
+    useEffect(()=>{
+        const url = `http://localhost:5000/user?email=${ownerEmail}`;
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>setOwnerInfo(data[0]))
+    }, [])
+
 
     const handleChange = (event) => {
         setVehicle(event.target.value);
@@ -63,9 +55,8 @@ const OwnerDetails = ({palaceId}) => {
         setClickedButton(event.target.innerText);
     }
     const handleBooking = ()=>{
-        setBookingDetails({from: startTime, to: endTime, parkNo: clickedButton, vehicleType: vehicle});
+        setBookingDetails({from: startTime, to: endTime, parkNo: clickedButton, vehicleType: vehicle, price: 15});
     }
-      
     return (
         <Box sx={{p:'60px 0'}}>
         <Typography variant='h4' align='center' sx={{color: '#13C33E', pb: '40px'}}>Parking Owner Details</Typography>
@@ -79,24 +70,25 @@ const OwnerDetails = ({palaceId}) => {
             >
             <Grid item>
                 <Box componant="div" sx={{display: 'flex', flexDirection: 'column', padding: '15px'}}>
-                    <Typography variant='h4'>{data.ownerName}</Typography>
-                    <Typography variant='h6'>{data.area}</Typography>
-                    <Typography variant='caption'>{data.address}</Typography>
-                    <Rating name="read-only" value= {data.ratings} readOnly sx={{color: 'black'}}/>
+                    <Typography variant='h4'>{ownerInfo?.name}</Typography>
+                    <Typography variant='h6'>{ownerInfo?.email}</Typography>
+                    <Typography variant='caption'>{ownerInfo?.address}</Typography>
+                    {/* <Rating name="read-only" value= {data.ratings} readOnly sx={{color: 'black'}}/> */}
                 </Box>
             </Grid>
             <Grid item>
                 <Typography variant='h6'>Total Place for pariking: 50ft/50ft</Typography>
-                <Stack direction='row' spacing={2}  sx={{padding: '10px'}}>
-                    <BookedButton variant='contained' disabled>P1</BookedButton>
-                    <UnBookedButton onClick={handleClick} sx={{backgroundColor: clickedButton==='P2'? 'blue': 'black'}} >P2</UnBookedButton>
-                    <UnBookedButton onClick={handleClick} sx={{backgroundColor: clickedButton==='P3'? 'blue': 'black'}}>P3</UnBookedButton>
-                    <UnBookedButton  onClick={handleClick} sx={{backgroundColor: clickedButton==='P4'? 'blue': 'black'}}>P4</UnBookedButton>
-                </Stack>
+                <Box sx={{width:'400px', display:'flex', flexWrap:'wrap', gap:'4px', justifyContent:'stretch'}}>
+                    {
+                        ownerInfo?.parkingSlots?.map(slot=>(
+                            <ParkSlotButton onClick={handleClick} disabled={slot.booked} sx={{backgroundColor: clickedButton===`${slot.slotName}`? 'blue': 'black'}}>{slot.slotName}</ParkSlotButton> 
+                        ))
+                    }
+                </Box>
                 <Box component='div'>
                     <Typography variant='h6' align='center' sx={{color: '#13C33E'}}>Select Time:</Typography>
-                    <Stack component="form" noValidate spacing={3} direction='row' sx={{pt: "10px"}}>
-                        <TextField
+                    <Stack component="form" noValidate spacing={3} direction='row' justifyContent='space-between' sx={{pt: "10px", width:'340px'}}>
+                        <TextField fullWidth
                             id="time"
                             label="From"
                             type="time"
@@ -110,7 +102,7 @@ const OwnerDetails = ({palaceId}) => {
                             sx={{ width: 150 }}
                             onChange={handleStartTimeChange}
                         />
-                        <TextField
+                        <TextField fullWidth
                             id="time"
                             label="To"
                             type="time"
@@ -127,7 +119,7 @@ const OwnerDetails = ({palaceId}) => {
                     </Stack>
                 </Box>
 
-                <Box sx={{ minWidth: 160, padding: '10px' }}>
+                <Box component='div' sx={{ width:'340px', mt: '10px'}}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Vehicle</InputLabel>
                         <Select
@@ -149,7 +141,7 @@ const OwnerDetails = ({palaceId}) => {
 
         <CardActions sx={{ justifyContent: "center" }}>
                 <Link to="booking" state={{from: startTime, to:endTime, parkNo: clickedButton, vehicleType: vehicle}} style={{textDecoration: 'none'}}>
-                    <MainButton size="large" variant="contained" onClick={handleBooking} >Booking</MainButton>
+                    <MainButton size="large" variant="contained" onClick={handleBooking} >Book Now</MainButton>
                 </Link>
         </CardActions>
         </Box>

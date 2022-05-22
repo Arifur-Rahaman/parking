@@ -1,17 +1,17 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import { useParams } from 'react-router';
-import Footer from '../Footer/Footer';
-import HowWork from '../HowWork/HowWork';
-import NavBar from '../NavBar/NavBar';
-import OwnerDetails from '../OwnerDetails/OwnerDetails';
+import Footer from '../../components/Footer/Footer';
+import HowWork from '../../components/HowWork/HowWork';
+import NavBar from '../../components/NavBar/NavBar';
+import OwnerDetails from '../../components/OwnerDetails/OwnerDetails';
 
 const PlaceDetails = () => {
-    const {placeId} = useParams()
+    const {ownerEmail} = useParams()
     return (
         <Box sx={{width: "100%"}}>
             <NavBar/>
-            <OwnerDetails palaceId={placeId}/>
+            <OwnerDetails ownerEmail={ownerEmail}/>
             <HowWork showTittle={false}/>
             <Footer/>
         </Box>

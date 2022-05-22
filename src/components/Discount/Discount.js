@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 import { Box } from '@mui/system';
 import React from 'react';
 import discount_bg from '../../assets/images/discount-bg.jpg';
-import { MainButton } from '../OwnerDetails/OwnerDetails';
+import { MainButton } from '../../Shared/Buttons';
 const Container = styled(Box)(({theme})=>({
     width: '100%',
     height: '400px',
