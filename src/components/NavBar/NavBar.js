@@ -55,9 +55,9 @@ const NavBar = () => {
         >
             {/* <MainButton variant='contained' sx={{ width: '150px' }} onClick={handleAccountSwitch}>{accountStatus === 'driver' ? 'Switch Owner' : 'Switch Driver'}</MainButton> */}
             <MainButton variant='contained' disabled={pathname ==='/driver'} onClick={()=>navigate('driver')}>Book Now </MainButton>
-            <Badge badgeContent={1} color="primary">
+            {/* <Badge badgeContent={1} color="primary">
                 <CircleNotificationsIcon color="action" sx={{ fontSize: '40px' }} />
-            </Badge>
+            </Badge> */}
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

@@ -258,7 +258,7 @@ const Login = () => {
                     
                 </Card>
                 <Button startIcon={<GoogleIcon/>} onClick={handleSignInWithGoogle} sx={{border: '1px solid black', mt: '10px'}} fullWidth>Signin With google</Button>
-                <Button startIcon={<FacebookIcon/>} onClick={handleSignInWithFacebook} sx={{border: '1px solid black', mt: '10px'}} fullWidth>Signin With Facebook</Button>
+                {/* <Button startIcon={<FacebookIcon/>} onClick={handleSignInWithFacebook} sx={{border: '1px solid black', mt: '10px'}} fullWidth>Signin With Facebook</Button> */}
             </Stack>
         </Box>
     );

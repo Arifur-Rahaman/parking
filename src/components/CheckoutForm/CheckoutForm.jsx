@@ -107,7 +107,8 @@ const CheckoutForm = () => {
                     paidAmmount: paymentIntent.amount/100,
                     secretKey: paymentIntent.client_secret,
                     currency: paymentIntent.currency,
-                    id: paymentIntent.id
+                    id: paymentIntent.id,
+                    bookingTime: new Date().toLocaleString()
                 })
             })
             .then(res=>res.json())

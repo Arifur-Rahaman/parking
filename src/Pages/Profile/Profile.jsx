@@ -6,7 +6,8 @@ import { MainButton, SecondaryButton } from '../../Shared/Buttons';
 import jwt_decode from "jwt-decode";
 
 const Profile = () => {
-    const { profileInfo, setProfileInfo } = useContext(userContext)
+    const { profileInfo, setProfileInfo } = useContext(userContext);
+    const [confirmMessage, setConfirmMessage] = useState('')
 
     useEffect(() => {
         setParkingSlots(profileInfo?.slots);
@@ -68,6 +69,7 @@ const Profile = () => {
     }
 
     const handleUpdateProfileInfo = () => {
+        setConfirmMessage("")
         delete profileInfo._id;
         fetch('http://localhost:5000/user/update', {
             method: 'PATCH',
@@ -77,7 +79,11 @@ const Profile = () => {
             body: JSON.stringify(profileInfo)
         })
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(data =>{
+                if(data.modifiedCount>0){
+                    setConfirmMessage("Updated successfully")
+                }
+            });
 
     }
 
@@ -151,6 +157,7 @@ const Profile = () => {
                         </Grid>
                     </Grid>
                     <Box component='div' textAlign='right'>
+                        <Typography sx={{color: '#13C33E', pb:'8px'}}>{confirmMessage}</Typography>
                         <MainButton onClick={handleUpdateProfileInfo}>Update Profile</MainButton>
                     </Box>
                 </Stack>
