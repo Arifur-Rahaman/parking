@@ -26,7 +26,7 @@ const Booking = () => {
         const token = localStorage.getItem('idToken')
         if(token){
             const decoded = jwt_decode(token)
-            const url = `http://localhost:5000/user?email=${decoded.email}`;
+            const url = `https://safe-brook-97366.herokuapp.com/user?email=${decoded.email}`;
             fetch(url)
             .then(res => res.json())
             .then(data => {

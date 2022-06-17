@@ -20,7 +20,7 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         if (price) {
-            fetch('http://localhost:5000/create-payment-intent', {
+            fetch('https://safe-brook-97366.herokuapp.com/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -88,7 +88,7 @@ const CheckoutForm = () => {
             setErrorMessage('')
             console.log(paymentIntent)
             setProcessing(false)
-            fetch('http://localhost:5000/bookings',{
+            fetch('https://safe-brook-97366.herokuapp.com/bookings',{
                 method: 'POST',
                 headers:{
                     'content-type': 'application/json'

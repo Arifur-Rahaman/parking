@@ -10,7 +10,7 @@ const DriverHome = () => {
     const [selectedPlace, setSelectedPlace] = useState({})
     const {allUsers, setAllUsers}= useContext(allUsersContext)
     useEffect(()=>{
-        fetch('http://localhost:5000/users')
+        fetch('https://safe-brook-97366.herokuapp.com/users')
         .then(res=>res.json())
         .then(data=>setAllUsers(data))
     }, [])

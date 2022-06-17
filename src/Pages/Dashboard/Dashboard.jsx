@@ -8,13 +8,13 @@ const Dashboard = () => {
     const [ownerBooking, setOwnerBooking] = useState([])
     const { email } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:5000/driverBooking?email=${email}`)
+        fetch(`https://safe-brook-97366.herokuapp.com/driverBooking?email=${email}`)
             .then(res => res.json())
             .then(data => setDriverBooking([...data]))
     }, [email])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/ownerBooking?email=${email}`)
+        fetch(`https://safe-brook-97366.herokuapp.com/ownerBooking?email=${email}`)
             .then(res => res.json())
             .then(data => setOwnerBooking([...data]))
     }, [email])
