@@ -25,7 +25,6 @@ const HeaderContainer = styled('div')(({theme})=>({
     alignItems: 'center'
 }))
 const Header = () => {
-    //const [{email}, setSingedInUser] = useContext(authContext);
     const idToken = localStorage.getItem('idToken');
     return (
        <>

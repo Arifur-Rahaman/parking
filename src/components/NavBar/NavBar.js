@@ -1,8 +1,16 @@
-import { Avatar, Badge, Box, IconButton, Menu, MenuItem, Stack, Tooltip, Typography } from '@mui/material';
+import { 
+    Avatar, 
+    Box, 
+    IconButton, 
+    Menu, 
+    MenuItem, 
+    Stack, 
+    Tooltip, 
+    Typography 
+} from '@mui/material';
 import React, { useContext } from 'react';
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { accountStatusContext, authContext } from '../../App';
+import { accountStatusContext} from '../../App';
 import { MainButton } from '../../Shared/Buttons'
 import jwt_decode from "jwt-decode";
 const NavBar = () => {
@@ -10,7 +18,6 @@ const NavBar = () => {
     const decoded = jwt_decode(token);
     const settings = ['Profile', 'Dashboard'];
     const navigate = useNavigate();
-    const [accountStatus, setAccountStatus] = useContext(accountStatusContext)
     const {pathname} = useLocation();
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenUserMenu = (event) => {
@@ -31,17 +38,6 @@ const NavBar = () => {
         }
     }
 
-
-    const handleAccountSwitch = () => {
-        if (accountStatus === 'driver') {
-            navigate('/owner/request', { replace: true });
-            setAccountStatus('owner')
-        }
-        else if (accountStatus === 'owner') {
-            navigate('/driver', { replace: true })
-            setAccountStatus('driver')
-        }
-    }
     return (
         <Stack
             direction='raw'
@@ -53,7 +49,6 @@ const NavBar = () => {
                 borderBottom: '1px solid lightgray',
             }}
         >
-            {/* <MainButton variant='contained' sx={{ width: '150px' }} onClick={handleAccountSwitch}>{accountStatus === 'driver' ? 'Switch Owner' : 'Switch Driver'}</MainButton> */}
             <MainButton variant='contained' disabled={pathname ==='/driver'} onClick={()=>navigate('driver')}>Book Now </MainButton>
             {/* <Badge badgeContent={1} color="primary">
                 <CircleNotificationsIcon color="action" sx={{ fontSize: '40px' }} />

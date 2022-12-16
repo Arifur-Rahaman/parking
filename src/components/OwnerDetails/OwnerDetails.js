@@ -34,8 +34,9 @@ const OwnerDetails = ({ownerEmail}) => {
     const [vehicle, setVehicle] = React.useState('');
     const [bookingDetails, setBookingDetails] = useContext(bookingContext);
     const {ownerInfo, setOwnerInfo} = useContext(parkOwnerContext)
+    
     useEffect(()=>{
-        const url = `https://safe-brook-97366.herokuapp.com/user?email=${ownerEmail}`;
+        const url = `${process.env.REACT_APP_API_URL}/user?email=${ownerEmail}`;
         fetch(url)
         .then(res=>res.json())
         .then(data=>setOwnerInfo(data[0]))

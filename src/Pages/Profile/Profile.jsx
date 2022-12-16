@@ -16,7 +16,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('idToken')
         const decoded = jwt_decode(token)
-        const url = `https://safe-brook-97366.herokuapp.com/user?email=${decoded.email}`;
+        const url = `${process.env.REACT_APP_API_URL}/user?email=${decoded.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -71,7 +71,7 @@ const Profile = () => {
     const handleUpdateProfileInfo = () => {
         setConfirmMessage("")
         delete profileInfo._id;
-        fetch('https://safe-brook-97366.herokuapp.com/user/update', {
+        fetch(`${process.env.REACT_APP_API_URL}/user/update`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -87,8 +87,6 @@ const Profile = () => {
 
     }
 
-    
-    
     return (
         <Box component='div' sx={{ width: '100%', p: '0 64px' }}>
             <p>Manage Profile</p>

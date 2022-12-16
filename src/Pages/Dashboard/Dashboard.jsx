@@ -8,13 +8,13 @@ const Dashboard = () => {
     const [ownerBooking, setOwnerBooking] = useState([])
     const { email } = useParams();
     useEffect(() => {
-        fetch(`https://safe-brook-97366.herokuapp.com/driverBooking?email=${email}`)
+        fetch(`${process.env.REACT_APP_API_URL}/driverBooking?email=${email}`)
             .then(res => res.json())
             .then(data => setDriverBooking([...data]))
     }, [email])
 
     useEffect(() => {
-        fetch(`https://safe-brook-97366.herokuapp.com/ownerBooking?email=${email}`)
+        fetch(`${process.env.REACT_APP_API_URL}/ownerBooking?email=${email}`)
             .then(res => res.json())
             .then(data => setOwnerBooking([...data]))
     }, [email])
@@ -44,7 +44,6 @@ const Dashboard = () => {
                                 }
                             </Grid>
                             : <CircularProgress />
-
                     }
                 </>
             </Box>

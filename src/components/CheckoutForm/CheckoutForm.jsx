@@ -20,7 +20,7 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         if (price) {
-            fetch('https://safe-brook-97366.herokuapp.com/create-payment-intent', {
+            fetch(`${process.env.REACT_APP_API_URL}/create-payment-intent`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -36,7 +36,6 @@ const CheckoutForm = () => {
     const elements = useElements();
 
     const handleSubmit = async (event) => {
-        // Block native form submission.
         event.preventDefault();
 
         if (!stripe || !elements) {
@@ -88,7 +87,7 @@ const CheckoutForm = () => {
             setErrorMessage('')
             console.log(paymentIntent)
             setProcessing(false)
-            fetch('https://safe-brook-97366.herokuapp.com/bookings',{
+            fetch(`${process.env.REACT_APP_API_URL}/bookings`,{
                 method: 'POST',
                 headers:{
                     'content-type': 'application/json'

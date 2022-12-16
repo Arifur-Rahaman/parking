@@ -8,22 +8,33 @@ import ClickedPlaceDetails from '../../components/ClickedPlaceDetails/ClickedPla
 import allUsersContext from '../../context/allUsersContext';
 const DriverHome = () => {
     const [selectedPlace, setSelectedPlace] = useState({})
-    const {allUsers, setAllUsers}= useContext(allUsersContext)
-    useEffect(()=>{
-        fetch('https://safe-brook-97366.herokuapp.com/users')
-        .then(res=>res.json())
-        .then(data=>setAllUsers(data))
-    }, [])
-    return (
-        <div style={{width:'100%'}}>
-            <NavBar/>
-            <Map parkDetail={allUsers} setSelectedPlace={setSelectedPlace}></Map>
-            {
-               ( Object.keys(selectedPlace).length !== 0) && <ClickedPlaceDetails selectedPlace={selectedPlace}></ClickedPlaceDetails>
+    const { allUsers, setAllUsers } = useContext(allUsersContext)
+
+    useEffect(() => {
+        const getUsers = async () => {
+            try {
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/users`)
+                const data = await res.json()
+                console.log(data)
+                setAllUsers(data)
+            } catch (error) {
+                console.log('Error',error)
             }
-            <AvailablePlaces parkDetail={allUsers}/>
-            <HowWork showTittle={false}></HowWork>
-            <Footer></Footer>
+        }
+        getUsers()
+    }, [setAllUsers])
+
+    return (
+        <div style={{ width: '100%' }}>
+            <h1>Driver Home</h1>
+            {/* <NavBar /> */}
+            {/* <Map parkDetail={allUsers} setSelectedPlace={setSelectedPlace}></Map>
+            {
+                (Object.keys(selectedPlace).length !== 0) && <ClickedPlaceDetails selectedPlace={selectedPlace}></ClickedPlaceDetails>
+            }
+            <AvailablePlaces parkDetail={allUsers} />
+            <HowWork showTittle={false}></HowWork> */}
+            {/* <Footer></Footer> */}
         </div>
     );
 };

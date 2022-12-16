@@ -1,11 +1,10 @@
 import React from 'react';
-import Counter from '../Counter/Counter';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import HowWork from '../HowWork/HowWork';
-import ParkingAmenities from '../ParkingAmenities/ParkingAmenities';
-import ParkingOptions from '../ParkingOptions/ParkingOptions';
-import './Main.css';
+import Counter from '../../components/Counter/Counter';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import HowWork from '../../components/HowWork/HowWork';
+import ParkingAmenities from '../../components/ParkingAmenities/ParkingAmenities';
+import ParkingOptions from '../../components/ParkingOptions/ParkingOptions';
 const Main = () => {
     return (
         <div className="main">

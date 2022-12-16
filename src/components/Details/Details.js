@@ -7,7 +7,7 @@ const Details = () => {
     const {bookingId} = useParams();
     const [bookingData, setBookingData] = useState({})
     useEffect(()=>{
-        fetch(`https://safe-brook-97366.herokuapp.com/booking/${bookingId}`)
+        fetch(`${process.env.REACT_APP_API_URL}/booking/${bookingId}`)
         .then(res=>res.json())
         .then(data=>setBookingData({...data}))
     }, [bookingId])
