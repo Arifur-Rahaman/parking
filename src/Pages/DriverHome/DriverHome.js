@@ -5,36 +5,42 @@ import HowWork from '../../components/HowWork/HowWork';
 import NavBar from '../../components/NavBar/NavBar';
 import Map from '../../components/Map/Map';
 import ClickedPlaceDetails from '../../components/ClickedPlaceDetails/ClickedPlaceDetails';
-import allUsersContext from '../../context/allUsersContext';
+import allUsersContext, { parkContext } from '../../context/parkContext';
+import axios from 'axios';
+import { getErrorMessage } from '../../utils/getErrorMessage';
 const DriverHome = () => {
     const [selectedPlace, setSelectedPlace] = useState({})
-    const { allUsers, setAllUsers } = useContext(allUsersContext)
+    const {dispatchPark, parkState} = useContext(parkContext)
 
     useEffect(() => {
-        const getUsers = async () => {
-            try {
-                const res = await fetch(`${process.env.REACT_APP_API_URL}/users`)
-                const data = await res.json()
-                console.log(data)
-                setAllUsers(data)
-            } catch (error) {
-                console.log('Error',error)
+        dispatchPark({type: "fetching"})
+        try {
+            const fetchParks = async () => {
+                const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/api/parks`)
+                
+                if(data){
+                    dispatchPark({type: "success", payload: data})
+                }
             }
+            fetchParks()
+        } catch (error) {
+            const message  = getErrorMessage(error)
+            dispatchPark({type: "error", payload: message})
         }
-        getUsers()
-    }, [setAllUsers])
-
+    }, [dispatchPark])
     return (
         <div style={{ width: '100%' }}>
-            <h1>Driver Home</h1>
-            {/* <NavBar /> */}
-            {/* <Map parkDetail={allUsers} setSelectedPlace={setSelectedPlace}></Map>
+            <NavBar/>
+            <Map setSelectedPlace={setSelectedPlace}/>
+            {/*
             {
                 (Object.keys(selectedPlace).length !== 0) && <ClickedPlaceDetails selectedPlace={selectedPlace}></ClickedPlaceDetails>
             }
-            <AvailablePlaces parkDetail={allUsers} />
-            <HowWork showTittle={false}></HowWork> */}
-            {/* <Footer></Footer> */}
+            
+             */}
+            <AvailablePlaces/>
+            <HowWork/>
+            <Footer/>
         </div>
     );
 };

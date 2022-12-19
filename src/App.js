@@ -2,10 +2,10 @@
 import './App.css';
 import React, { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
-
 import { createContext } from 'react';
+
 import { UserProvider } from './context/userContext';
-import { AllUsersProvider } from './context/allUsersContext';
+import { ParkProvider } from './context/parkContext';
 import { OwnerInfoProvider } from './context/parkOwnerContext';
 
 import Dashboard from './Pages/Dashboard/Dashboard';
@@ -39,7 +39,7 @@ function App() {
   return (
     <AuthProvider>
       <UserProvider>
-        <AllUsersProvider>
+        <ParkProvider>
           <OwnerInfoProvider>
             <accountStatusContext.Provider value={[accountStatus, setAccountStatus]}>
               <bookingContext.Provider value={[bookingDetails, setBookingDetails]}>
@@ -72,7 +72,7 @@ function App() {
               </bookingContext.Provider>
             </accountStatusContext.Provider>
           </OwnerInfoProvider>
-        </AllUsersProvider>
+        </ParkProvider>
       </UserProvider>
       </AuthProvider>
   );

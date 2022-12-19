@@ -127,7 +127,7 @@ const Menu = () => {
         itemListMain.map(list => {
           const { text, icon, onclick } = list;
           return (
-            <List>
+            <List key={text}>
               <ListItem button key={text} onClick={onclick}>
                 <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
@@ -141,7 +141,7 @@ const Menu = () => {
         itemListSub.map(list => {
           const { text, icon, onclick } = list;
           return (
-            <List>
+            <List key={text}>
               <ListItem button key={text} onClick={onclick}>
                 <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>
                 <ListItemText primary={text} />

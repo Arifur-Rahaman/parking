@@ -31,7 +31,7 @@ const HowWork = (props) => {
             <Grid container spacing={2}>
                 {
                     headlines.map((headline, i)=>(
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={4} key={headline}>
                             <WorkingDetail>
                                 <List  variant='h5'>{headline}</List>
                                 <P sx={{fontSize:'18px'}}>{details[i]}</P>

@@ -19,7 +19,6 @@ const Footer = () => {
             container
             direction="row"
             justifyContent="space-between"
-            xs={12} 
             sx={{backgroundColor: "#040720", padding: '60px 20px'}}
             >
                 <Grid item xs={12} md={4}>
@@ -66,7 +65,7 @@ const Footer = () => {
                             <Typography variant="h6" sx={{color: 'white', paddingBottom: '10px'}}>Navigation</Typography>
                                 {
                                     ["Home", "About", "Service", "Parking Options", "Contact Us"].map(navigation=>(
-                                        <Stack direction='row' alignItems='center'>
+                                        <Stack direction='row' alignItems='center' key={navigation}>
                                             <Box component='div' sx={{height: '5px', width: '5px', borderRadius:'50%', backgroundColor:'green'}}/>
                                             <Typography sx={{color: '#808080', paddingLeft:'5px'}}>{navigation}</Typography>
                                         </Stack>
@@ -97,7 +96,7 @@ const Footer = () => {
                         <Typography variant="h6" sx={{color: 'white', paddingBottom:'10px'}}>Discover</Typography>
                         {
                             ["Help", "How It Works", "Contact Us"].map(discover=>(
-                                <Stack direction='row' alignItems='center'>
+                                <Stack direction='row' alignItems='center' key={discover}>
                                     <Box component='div' sx={{height: '5px', width: '5px', borderRadius:'50%', backgroundColor:'green'}}/>
                                     <Typography sx={{color: '#808080', paddingLeft:'5px'}}>{discover}</Typography>
                                 </Stack>

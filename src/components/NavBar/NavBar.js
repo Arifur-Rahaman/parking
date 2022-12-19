@@ -10,12 +10,10 @@ import {
 } from '@mui/material';
 import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { accountStatusContext} from '../../App';
+import { authContext } from '../../context/authContext';
 import { MainButton } from '../../Shared/Buttons'
-import jwt_decode from "jwt-decode";
 const NavBar = () => {
-    const token = localStorage.getItem('idToken')
-    const decoded = jwt_decode(token);
+    const {authState} = useContext(authContext)
     const settings = ['Profile', 'Dashboard'];
     const navigate = useNavigate();
     const {pathname} = useLocation();
@@ -31,7 +29,7 @@ const NavBar = () => {
     const handleMenuClick = (setting)=>{
         handleCloseUserMenu();
         if(setting==='Dashboard'){
-            navigate(`../${setting.toLowerCase()}/${decoded.email}`)
+            navigate(`../${setting.toLowerCase()}/${authState.user.email}`)
         }
         else{
             navigate(`../${setting.toLowerCase()}`)

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import park_icon from '../../assets/images/park-icon.png'
-import jwt_decode from "jwt-decode";
-const Map = ({ parkDetail, setSelectedPlace }) => {
-    const token = localStorage.getItem('idToken')
-        const decoded = jwt_decode(token)
-
+import { parkContext } from '../../context/parkContext';
+const Map = ({setSelectedPlace }) => {
+    const {parkState} = useContext(parkContext)
+    const {parks} = parkState
     const [center, setCenter] = useState({
         lat: 23.7985828,
         lng: 90.3466063
@@ -52,15 +51,15 @@ const Map = ({ parkDetail, setSelectedPlace }) => {
                     />
 
                     {
-                        parkDetail.map(data => {
-                            const position = data.location
-                            const userEmail = decoded.email === data.email
+                        parks.map(park => {
+                            const position = park.location
                             return (
-                                !userEmail && position && <Marker
+                                position && <Marker
+                                    key={park._id}
                                     onLoad={onLoad}
                                     position={position}
                                     icon={park_icon}
-                                    onClick={() => getSelectedPlacedetail(data)}
+                                    onClick={() => getSelectedPlacedetail(park)}
                                 />
                             )
                         })
