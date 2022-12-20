@@ -26,7 +26,7 @@ const ParkSlotButton = styled(Button)(({theme})=>({
     
 
 }))
-const OwnerDetails = ({ownerEmail}) => {
+const OwnerDetails = ({parkId}) => {
 
     const [startTime, setStartTime] =useState(null);
     const [endTime, setEndTime] = useState(null);
@@ -35,12 +35,12 @@ const OwnerDetails = ({ownerEmail}) => {
     const [bookingDetails, setBookingDetails] = useContext(bookingContext);
     const {ownerInfo, setOwnerInfo} = useContext(parkOwnerContext)
     
-    useEffect(()=>{
-        const url = `${process.env.REACT_APP_API_URL}/user?email=${ownerEmail}`;
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=>setOwnerInfo(data[0]))
-    }, [])
+    // useEffect(()=>{
+    //     const url = `${process.env.REACT_APP_API_URL}/user?email=${ownerEmail}`;
+    //     fetch(url)
+    //     .then(res=>res.json())
+    //     .then(data=>setOwnerInfo(data[0]))
+    // }, [])
 
 
     const handleChange = (event) => {
@@ -66,8 +66,6 @@ const OwnerDetails = ({ownerEmail}) => {
             justifyContent = "space-around"
             alignItems = 'center'
             sx={{flexDirection: {xs:'column', md:'row'}}}
-
-            
             >
             <Grid item>
                 <Box componant="div" sx={{display: 'flex', flexDirection: 'column', padding: '15px'}}>

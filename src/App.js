@@ -60,8 +60,8 @@ function App() {
                       <Route path="driver" element={<DriverHome />} />
                       <Route path="driver/placeDetails/:ownerEmail" element={<PlaceDetails />} />
                       <Route path="profile" element={<Profile />} />
-                      <Route path="driver/placeDetails/:ownerEmail/booking" element={<Booking />}/>
-                      <Route path="driver/placeDetails/:ownerEmail/booking/bookingDetails/:bookingId" element={<BookingDetails />} />
+                      <Route path="driver/placeDetails/:parkId/booking" element={<Booking />}/>
+                      <Route path="driver/placeDetails/:parkId/booking/bookingDetails/:bookingId" element={<BookingDetails />} />
                       <Route path="owner/request" element={<Request />} />
                       <Route path="owner/request/details" element={<ConfirmRequest />} />
                       <Route path="dashboard/:email" element={<Dashboard />} />

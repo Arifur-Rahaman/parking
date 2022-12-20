@@ -1,4 +1,5 @@
 import { createContext, useReducer} from "react";
+import { actions } from "../const/actions";
 
 export const parkContext = createContext();
 
@@ -6,39 +7,13 @@ export const ParkProvider = ({children})=>{
 
     const initialState = {
         parks: [],
-        isLoading: false,
-        isSuccess: false,
-        isError: false,
-        error: ''
     }
     function reducer(state, action){
         switch (action.type) {
-            case "fetching":
+            case actions.SET_PARKS:
                 return {
                     ...state,
-                    isLoading: true,
-                    isSuccess: false,
-                    isError: false,
-                    error: '',
-                    parks: []
-                }
-            case "success":
-                return {
-                    ...state,
-                    isLoading: false,
-                    isSuccess: true,
-                    isError: false,
-                    error: '',
                     parks: action.payload,
-                }
-            case "error":
-                return {
-                    ...state,
-                    isLoading: false,
-                    isSuccess: false,
-                    isError: true,
-                    error: action.payload,
-                    parks: [],
                 }
             default:
                 return state

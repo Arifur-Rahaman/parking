@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import park_icon from '../../assets/images/park-icon.png'
-import { parkContext } from '../../context/parkContext';
-const Map = ({setSelectedPlace }) => {
-    const {parkState} = useContext(parkContext)
-    const {parks} = parkState
-    const [center, setCenter] = useState({
-        lat: 23.7985828,
-        lng: 90.3466063
-    });
+import Loader from '../Loader/Loader';
+
+
+const Map = ({parks}) => {
+    
+    const [center, setCenter] = useState(null)
+
     const getCenter = (position) => {
-        const newCenter = { ...center };
+        const newCenter = {}
         newCenter.lat = position.coords.latitude;
         newCenter.lng = position.coords.longitude;
         setCenter(newCenter);
@@ -18,6 +17,7 @@ const Map = ({setSelectedPlace }) => {
     const handleError = (err) => {
         console.log(err)
     }
+
     useEffect(() => {
         navigator.geolocation.watchPosition(getCenter, handleError);
     }, [])
@@ -31,7 +31,11 @@ const Map = ({setSelectedPlace }) => {
         //console.log('marker: ', marker)
     }
     const getSelectedPlacedetail = (place) => {
-        setSelectedPlace(place)
+        //Here we ge clicket marker place
+    }
+
+    if(!center){
+        return <Loader/>
     }
     return (
         <div style={{ padding: '20px' }}>
@@ -49,7 +53,6 @@ const Map = ({setSelectedPlace }) => {
                         position={center}
 
                     />
-
                     {
                         parks.map(park => {
                             const position = park.location

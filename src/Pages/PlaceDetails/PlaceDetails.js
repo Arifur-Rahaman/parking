@@ -7,11 +7,11 @@ import NavBar from '../../components/NavBar/NavBar';
 import OwnerDetails from '../../components/OwnerDetails/OwnerDetails';
 
 const PlaceDetails = () => {
-    const {ownerEmail} = useParams()
+    const {parkId} = useParams()
     return (
         <Box sx={{width: "100%"}}>
             <NavBar/>
-            <OwnerDetails ownerEmail={ownerEmail}/>
+            <OwnerDetails parkId={parkId}/>
             <HowWork showTittle={false}/>
             <Footer/>
         </Box>

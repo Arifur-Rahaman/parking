@@ -18,7 +18,7 @@ const Details = () => {
         <Box component='div'>
             { 
             Object.keys(bookingData).length === 0
-            ? <p>Loading.........</p>
+            ? <p>Incresing.........</p>
             :<>
                 <Typography variant='h4' align='center'>Booking Details</Typography>
                 <Box componant='div' sx={{paddingTop: '20px'}}>
